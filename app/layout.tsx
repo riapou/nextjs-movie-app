@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/navbar/Navbar'
 import '@/styles/globals.scss'
 
 export const metadata: Metadata = {
@@ -34,7 +34,6 @@ export default function RootLayout({
         <br />
         <br />
         <br />
-
       </body>
     </html>
   )

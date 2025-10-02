@@ -3,79 +3,200 @@ $red: #9f0712;
 $red-dark: #82181a;
 $gray-dark: #374151;
 $gray-darker: #4b5563;
+$breakpoint-tablet: 1024px;
+$breakpoint-mobile: 768px;
+$breakpoint-small: 480px;
 
+// 🏠 Main Navbar Styles
 .navbar {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+  background: transparent;
   color: white;
   padding: 1rem 1.5rem;
   position: sticky;
   top: 0;
+  z-index: 1000;
+}
 
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+// 🔄 Container Layout
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 🔤 Logo Styles
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  span {
+    color: $red;
   }
+}
 
-  .logo {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    span {
+// 🔗 Navigation Links
+.links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+
+  li {
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
       color: $red;
     }
   }
 
-  .links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-
-    li {
-      cursor: pointer;
-      transition: color 0.3s;
-
-      &:hover {
-        color: $red;
-      }
+  a {
+    color: inherit;
+    text-decoration: none;
+    
+    &:hover {
+      color: $red;
     }
+  }
+}
+
+// 🔘 Buttons Container
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+// 🔍 Search Button
+.searchBtn {
+  color: $red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    transform: scale(1.1);
+    background: rgba($red, 0.1);
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+// 👤 Login Button
+.loginBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: 1px solid $red;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  font-size: inherit;
+
+  &:hover {
+    background: $red;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($red, 0.3);
+  }
+}
+
+// 📱 Responsive Design
+
+// Tablet
+@media (max-width: $breakpoint-tablet) {
+  .navbar {
+    padding: 0.875rem 1.25rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .links {
+    gap: 1.5rem;
+    font-size: 0.9rem;
   }
 
   .buttons {
-    display: flex;
-    gap: 0.75rem;
+    gap: 1rem;
+  }
 
-    button {
-      padding: 0.25rem 0.75rem;
-      border-radius: 10px;
-      transition: all 0.3s;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      -ms-border-radius: 10px;
-      -o-border-radius: 10px;
+  .loginBtn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+  }
+}
+
+// Mobile (Hide links)
+@media (max-width: $breakpoint-mobile) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .buttons {
+    gap: 0.8rem;
+  }
+
+  .loginBtn {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .searchBtn {
+    padding: 0.4rem;
+    
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
     }
+  }
+}
 
-    .searchBtn {
-      border: none;
-      padding: 0.5rem 0.5rem;
-      border-radius: 10px;
-      background: $red;
-      color: black;
-      &:hover {
-        background: $red-dark;
-      }
-    }
+// Small Mobile
+@media (max-width: $breakpoint-small) {
+  .navbar {
+    padding: 0.5rem 0.75rem;
+  }
 
-    .loginBtn {
-      border: 1px solid $red;
-      background: transparent;
-      color: white;
+  .logo {
+    font-size: 1rem;
+  }
 
-      &:hover {
-        background: $red;
-        color: black;
-      }
+  .buttons {
+    gap: 0.6rem;
+  }
+
+  .loginBtn {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .searchBtn {
+    padding: 0.3rem;
+    
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }
