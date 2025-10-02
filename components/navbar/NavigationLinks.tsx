@@ -1,5 +1,8 @@
-import { memo } from 'react'
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { memo } from 'react'
 import styles from '@/styles/components/Navbar.module.scss'
 
 const NAV_ITEMS = [
@@ -11,10 +14,12 @@ const NAV_ITEMS = [
 ] as const
 
 function NavigationLinks() {
+  const pathname = usePathname()
+
   return (
     <ul className={styles.links}>
       {NAV_ITEMS.map(({ href, label }) => (
-        <li key={href}>
+        <li key={href} className={pathname === href ? styles.active : ''}>
           <Link href={href}>{label}</Link>
         </li>
       ))}
