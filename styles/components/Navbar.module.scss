@@ -1,7 +1,7 @@
 // 🎨 Variables
 $red: #9f0712;
 $red-dark: #82181a;
-$gray-dark: #374151;
+$gray-dark: #1e1e1e;
 $gray-darker: #4b5563;
 $breakpoint-tablet: 1024px;
 $breakpoint-mobile: 768px;
@@ -119,6 +119,78 @@ $breakpoint-small: 480px;
   }
 }
 
+//  Open Menu (Mobile)
+.openMenuBTN {
+  display: none;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  font-size: inherit;
+
+  buttons {
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+  &:hover {
+    scale: 1.1;
+  }
+}
+// ❌ Close Menu (Mobile)
+.closeMenuBTN {
+  display: none;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  font-size: inherit;
+
+  buttons {
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+  &:hover {
+    scale: 1.1;
+    color: $red;
+  }
+}
+// 🍔 Hamburger Menu (Mobile)
+.MobileMenu {
+  position: fixed;
+  width: 50vw;
+  top: 0;
+  left: 0;
+  padding: 2rem;
+  background: $gray-dark;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1100;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  transition: transform 1s ease;
+}
+// Menu Links
+.menuLinks {
+  li {
+    padding: 5px;
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .active {
+    border-bottom: 1px $red solid;
+    color: $red;
+    border-radius: 2px;
+  }
+}
+
 // 📱 Responsive Design
 
 // Tablet
@@ -177,6 +249,21 @@ $breakpoint-small: 480px;
       height: 1.75rem;
     }
   }
+
+  .openMenuBTN {
+    display: inline-block;
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+  .closeMenuBTN {
+    display: inline-block;
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
 }
 
 // Small Mobile
@@ -204,6 +291,44 @@ $breakpoint-small: 480px;
     svg {
       width: 1.5rem;
       height: 1.5rem;
+    }
+  }
+
+  .openMenuBTN {
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+  .closeMenuBTN {
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+  .openMenuBTN {
+    buttons {
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+  .closeMenuBTN {
+    buttons {
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+  .MobileMenu {
+    padding: 1rem;
+  }
+  .menuLinks {
+    li {
+      margin-bottom: 1rem;
+      font-size: 1rem;
     }
   }
 }
