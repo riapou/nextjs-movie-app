@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Navbar from '@/components/navbar/Navbar'
 import '@/styles/globals.scss'
+import '@/styles/tailwind.css'
 
 export const metadata: Metadata = {
   title: 'PN Movie',
