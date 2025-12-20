@@ -1,10 +1,16 @@
 import { memo } from 'react'
+import { Poppins } from 'next/font/google'
 import styles from '@/styles/components/Navbar.module.scss'
 import Link from 'next/link'
 
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['700'],
+})
+
 function Logo() {
   return (
-    <Link href={'/'} className={styles.logo}>
+    <Link href='/' className={`${styles.logo} ${poppins.className}`}>
       <span>PN</span> Movies
     </Link>
   )

@@ -8,8 +8,8 @@ import MobileMenu from './MobileMenu'
 function Navbar() {
   return (
     <nav className={styles.navbar} role='navigation'>
-      <div className={styles.container}>
-        <div className='flex'>
+      <div className='flex items-center justify-between'>
+        <div className='flex items-center'>
           <MobileMenu />
           <Logo />
         </div>

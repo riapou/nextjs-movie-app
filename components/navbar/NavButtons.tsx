@@ -1,3 +1,4 @@
+'use client'
 import { memo } from 'react'
 import Link from 'next/link'
 import styles from '@/styles/components/Navbar.module.scss'
@@ -10,7 +11,8 @@ function NavButtons() {
         <SearchIcon />
       </Link>
       <Link href='/login' className={styles.loginBtn}>
-        Login / Signup
+        <span className={styles.desktop}>Login / Signup</span>
+        <span className={styles.mobile}>Login</span>
       </Link>
     </div>
   )

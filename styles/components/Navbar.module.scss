@@ -3,6 +3,7 @@ $red: #9f0712;
 $red-dark: #82181a;
 $gray-dark: #1e1e1e;
 $gray-darker: #4b5563;
+
 $breakpoint-tablet: 1024px;
 $breakpoint-mobile: 768px;
 $breakpoint-small: 480px;
@@ -17,19 +18,9 @@ $breakpoint-small: 480px;
   z-index: 1000;
 }
 
-// 🔄 Container Layout
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 // 🔤 Logo Styles
 .logo {
-  font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;
-  font-weight: bold;
-
   span {
     color: $red;
   }
@@ -43,7 +34,6 @@ $breakpoint-small: 480px;
 
   li {
     padding-top: 7px;
-
     cursor: pointer;
     transition: color 0.3s;
 
@@ -60,6 +50,7 @@ $breakpoint-small: 480px;
       color: $red;
     }
   }
+
   .active {
     border-top: 3px $red solid;
     color: $red;
@@ -67,7 +58,7 @@ $breakpoint-small: 480px;
   }
 }
 
-// 🔘 Buttons Container
+// 🔘 Buttons Container (Nav Left Side)
 .buttons {
   display: flex;
   align-items: center;
@@ -82,7 +73,7 @@ $breakpoint-small: 480px;
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 50%;
-  transition: all 0.3s;
+  transition: color 0.3s, transform 0.3s, background-color 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,16 +97,22 @@ $breakpoint-small: 480px;
   color: white;
   background: transparent;
   cursor: pointer;
-  transition: all 0.3s;
   text-decoration: none;
   display: inline-block;
   font-size: inherit;
+  transition: color 0.3s, transform 0.3s, background-color 0.3s;
 
   &:hover {
     background: $red;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba($red, 0.3);
+  }
+  .desktop {
+    display: inline-block;
+  }
+  .mobile {
+    display: none;
   }
 }
 
@@ -125,10 +122,10 @@ $breakpoint-small: 480px;
   color: white;
   background: transparent;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: color 0.3s, transform 0.3s, background-color 0.3s;
   text-decoration: none;
   font-size: inherit;
-
+  transition: transform 1s ease;
   buttons {
     svg {
       width: 1.75rem;
@@ -136,19 +133,19 @@ $breakpoint-small: 480px;
     }
   }
   &:hover {
-    scale: 1.1;
+    transform: scale(1.1);
   }
 }
-// ❌ Close Menu (Mobile)
+
+// ❌ Close Menu Button (Mobile)
 .closeMenuBTN {
   display: none;
   color: white;
   background: transparent;
   cursor: pointer;
-  transition: all 0.3s;
   text-decoration: none;
   font-size: inherit;
-
+  transition: transform 10s ease;
   buttons {
     svg {
       width: 1.75rem;
@@ -160,7 +157,8 @@ $breakpoint-small: 480px;
     color: $red;
   }
 }
-// 🍔 Hamburger Menu (Mobile)
+
+// 🍔 Hamburger Menu Button (Mobile)
 .MobileMenu {
   position: fixed;
   width: 50vw;
@@ -174,9 +172,9 @@ $breakpoint-small: 480px;
   display: flex;
   align-items: start;
   justify-content: space-between;
-  transition: transform 1s ease;
 }
-// Menu Links
+
+// Menu Links Inside Hamburger Menu
 .menuLinks {
   li {
     padding: 5px;
@@ -192,7 +190,6 @@ $breakpoint-small: 480px;
 }
 
 // 📱 Responsive Design
-
 // Tablet
 @media (max-width: $breakpoint-tablet) {
   .navbar {
@@ -218,7 +215,7 @@ $breakpoint-small: 480px;
   }
 }
 
-// Mobile (Hide links)
+// Mobile ( Display Links inside Hamburger Menu )
 @media (max-width: $breakpoint-mobile) {
   .navbar {
     padding: 0.75rem 1rem;
@@ -239,6 +236,12 @@ $breakpoint-small: 480px;
   .loginBtn {
     padding: 0.35rem 0.8rem;
     font-size: 0.85rem;
+    .mobile {
+      display: inline-block;
+    }
+    .desktop {
+      display: none;
+    }
   }
 
   .searchBtn {
@@ -257,6 +260,7 @@ $breakpoint-small: 480px;
       height: 1.75rem;
     }
   }
+
   .closeMenuBTN {
     display: inline-block;
     svg {
@@ -300,31 +304,18 @@ $breakpoint-small: 480px;
       height: 1.5rem;
     }
   }
+
   .closeMenuBTN {
     svg {
       width: 1.5rem;
       height: 1.5rem;
     }
   }
-  .openMenuBTN {
-    buttons {
-      svg {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-    }
-  }
-  .closeMenuBTN {
-    buttons {
-      svg {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-    }
-  }
+
   .MobileMenu {
     padding: 1rem;
   }
+
   .menuLinks {
     li {
       margin-bottom: 1rem;
