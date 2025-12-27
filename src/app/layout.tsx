@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Navbar from '@/components/navbar/Navbar'
 import '@/styles/globals.scss'
 import '@/styles/tailwind.css'
+import Providers from './providers'
 
 export const metadata: Metadata = {
   title: 'PN Movie',
@@ -16,25 +17,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Navbar />
-        {children}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   )

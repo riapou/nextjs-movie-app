@@ -1,0 +1,150 @@
+// MovieSkeleton.scss
+@use './variables' as *;
+
+.movie-skeleton {
+  position: relative;
+  width: 100%;
+  height: 400px; // Mobile first
+  overflow: hidden;
+  background-color: color('neutral-900');
+  animation: pulse 1.5s ease-in-out infinite;
+
+  @include respond-to('md') {
+    height: 450px;
+  }
+
+  @include respond-to('lg') {
+    height: 550px;
+  }
+
+  @include respond-to('xl') {
+    height: 100vh;
+  }
+}
+
+.skeleton-overlay {
+  @include position-absolute(0, null, null, 0);
+  @include flex-center(column);
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 0 spacing('5');
+
+  @include gradient-linear(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent 100%
+  );
+
+  @include respond-to('md') {
+    padding: 0 spacing('10');
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.3) 60%,
+      transparent 100%
+    );
+  }
+
+  @include respond-to('lg') {
+    padding: 0 spacing('20');
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      transparent 100%
+    );
+  }
+}
+
+.skeleton-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: spacing('4');
+
+  @include respond-to('md') {
+    width: 80%;
+    gap: spacing('5');
+  }
+
+  @include respond-to('lg') {
+    width: 60%;
+    gap: spacing('6');
+  }
+
+  @include respond-to('xl') {
+    width: 30%;
+    gap: spacing('6');
+  }
+}
+
+.skeleton-title {
+  height: spacing('8');
+  width: 75%;
+  border-radius: radius('md');
+  background-color: color('neutral-700');
+
+  @include respond-to('md') {
+    height: spacing('10');
+  }
+
+  @include respond-to('lg') {
+    height: spacing('12');
+  }
+}
+
+.skeleton-text {
+  height: spacing('4');
+  width: 100%;
+  border-radius: radius('base');
+  background-color: color('neutral-700');
+
+  &:nth-child(3) {
+    width: 83.333%; // 5/6
+  }
+
+  @include respond-to('md') {
+    height: spacing('5');
+  }
+}
+
+.skeleton-buttons {
+  display: flex;
+  gap: spacing('3');
+  margin-top: spacing('6');
+
+  @include respond-to('md') {
+    gap: spacing('4');
+    margin-top: spacing('8');
+  }
+}
+
+.skeleton-button {
+  height: spacing('10');
+  width: spacing('28');
+  border-radius: radius('md');
+  background-color: color('neutral-700');
+
+  @include respond-to('md') {
+    height: spacing('11');
+    width: spacing('32');
+  }
+
+  @include respond-to('lg') {
+    height: spacing('12');
+    width: spacing('36');
+  }
+}
+
+// Keyframes for skeleton animation
+@include keyframes(pulse) {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
