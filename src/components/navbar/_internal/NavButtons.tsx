@@ -1,7 +1,7 @@
 'use client'
 import { memo } from 'react'
 import Link from 'next/link'
-import styles from '@/styles/components/Navbar.module.scss'
+import styles from '../Navbar.module.scss'
 import SearchIcon from './SearchIcon'
 
 function NavButtons() {

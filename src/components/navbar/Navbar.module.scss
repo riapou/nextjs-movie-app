@@ -1,6 +1,6 @@
 // 🎨 Variables
-$red: #9f0712;
-$red-dark: #82181a;
+$red: #af0511;
+$red-light: #ff3337;
 $gray-dark: #1e1e1e;
 $gray-darker: #4b5563;
 
@@ -10,13 +10,24 @@ $breakpoint-small: 480px;
 
 // 🏠 Main Navbar Styles
 .navbar {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  width: 100%;
   color: white;
   padding: 1rem 1.5rem;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
+  font-weight: 500;
 }
+
 
 // 🔤 Logo Styles
 .logo {
@@ -55,6 +66,7 @@ $breakpoint-small: 480px;
     border-top: 3px $red solid;
     color: $red;
     border-radius: 3px;
+    font-weight: 700;
   }
 }
 
@@ -80,7 +92,7 @@ $breakpoint-small: 480px;
 
   &:hover {
     transform: scale(1.1);
-    background: rgba($red, 0.1);
+    background: rgba($red-light, 0.1);
   }
 
   svg {

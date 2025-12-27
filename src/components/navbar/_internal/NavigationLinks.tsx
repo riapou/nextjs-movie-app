@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { memo } from 'react'
-import styles from '@/styles/components/Navbar.module.scss'
+import styles from '../Navbar.module.scss'
 
 const NAV_ITEMS = [
   { href: '/', label: 'Home' },

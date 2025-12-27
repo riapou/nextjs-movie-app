@@ -1,9 +1,9 @@
 import { memo } from 'react'
-import styles from '@/styles/components/Navbar.module.scss'
-import Logo from './Logo'
-import NavigationLinks from './NavigationLinks'
-import NavButtons from './NavButtons'
-import MobileMenu from './MobileMenu'
+import styles from './Navbar.module.scss'
+import Logo from './_internal/Logo'
+import NavigationLinks from './_internal/NavigationLinks'
+import NavButtons from './_internal/NavButtons'
+import MobileMenu from './_internal/MobileMenu'
 
 function Navbar() {
   return (

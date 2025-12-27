@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { Poppins } from 'next/font/google'
-import styles from '@/styles/components/Navbar.module.scss'
+import styles from '../Navbar.module.scss'
 import Link from 'next/link'
 
 const poppins = Poppins({
