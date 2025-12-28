@@ -7,7 +7,11 @@ import MobileMenu from './_internal/MobileMenu'
 
 function Navbar() {
   return (
-    <nav className={styles.navbar} role='navigation'>
+    <nav
+      className={` ${styles.navbar}
+      }`}
+      role='navigation'
+    >
       <div className='flex items-center justify-between'>
         <div className='flex items-center'>
           <MobileMenu />

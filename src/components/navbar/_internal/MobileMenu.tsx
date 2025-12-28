@@ -58,7 +58,7 @@ function MobileMenu() {
   return (
     <div>
       {isOpen ? (
-        <div ref={menuRef} className={styles.MobileMenu}>
+        <div ref={menuRef} className={`${styles.MobileMenu} ${styles.open}`}>
           <ul className={styles.menuLinks}>
             {NAV_ITEMS.map(({ href, label }) => (
               <li key={href} className={pathname === href ? styles.active : ''}>
