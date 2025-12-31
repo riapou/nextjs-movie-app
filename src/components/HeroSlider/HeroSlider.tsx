@@ -1,9 +1,9 @@
 'use client'
 import { HeroSliderMovie } from '@/types/movie'
 import { HeroSliderTV } from '@/types/tv'
-import { useTrendAll } from '@/lib/fetcher'
 import HeroSlider from './_internal/movieSlider'
 import { MovieSkeleton } from './_internal/MovieSkeleton/MovieCardSkeleton'
+import { useTrendAll } from '@/hooks/queries/trend-all'
 
 export default function Home() {
   const { data, isLoading, isError } = useTrendAll() as {

@@ -6,7 +6,7 @@ import { getImageUrl } from '@/lib/utils/get-image-url'
 import { useHorizontalScroll } from '@/hooks/useHorizontalScroll'
 import { RowHeader } from './_internal/RowHeader'
 import { ScrollContainer } from './_internal/ScrollContainer'
-import PersonCard from './_internal/person-card/PersonCard'
+import PersonCard from './_internal/PersonCard'
 
 interface HorizontalPersonRowProps {
   title: string

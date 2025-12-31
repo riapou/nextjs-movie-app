@@ -2,7 +2,7 @@
 
 import './HorizontalMovieRow.scss'
 import { MovieCardData as Movie } from '@/types/movie'
-import MovieCard from './_internal/movie-card/MoveCard'
+import MovieCard from './_internal/MoveCard'
 import { getImageUrl } from '@/lib/utils/get-image-url'
 import { useHorizontalScroll } from '@/hooks/useHorizontalScroll'
 import { RowHeader } from './_internal/RowHeader'

@@ -1,21 +1,18 @@
 'use client'
 import React from 'react'
 import HorizontalMovieRow from '@/components/movie-row/HorizontalMovieRow'
-import {
-  useOnTheAirTVs,
-  usePopularMovies,
-  usePopularTVs,
-  useTrendAll,
-  useTrendPerson,
-  useUnComingMovies,
-} from '@/lib/fetcher'
+
 import HorizontalPersonRow from '@/components/person-row/HorizontalPersonRow'
+import { useUpcomingMovies, usePopularMovies } from '@/hooks/queries/movies'
+import { useTrendPerson } from '@/hooks/queries/persons'
+import { useTrendAll } from '@/hooks/queries/trend-all'
+import { usePopularTVs, useOnTheAirTVs } from '@/hooks/queries/tvs'
 
 const Main: React.FC = () => {
   const { data } = useTrendAll()
   const trendingMovies = data?.results || []
 
-  const { data: upcomingData } = useUnComingMovies()
+  const { data: upcomingData } = useUpcomingMovies()
   const uncomingMovies = upcomingData?.results || []
 
   const { data: popularMoviesData } = usePopularMovies()
