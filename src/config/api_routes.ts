@@ -5,8 +5,10 @@ export const API_ROUTES = {
   default_lang: 'en-US',
 
   trending: {
-    day: '/trending/all/day',
-    week: '/trending/all/week',
+    all: '/trending/all/week',
+    movie: '/trending/movie/week',
+    tv: '/trending/tv/week',
+    person: '/trending/person/week',
   },
 
   movies: {

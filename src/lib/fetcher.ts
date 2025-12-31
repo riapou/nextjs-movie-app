@@ -38,10 +38,45 @@ export const fetcher = async <T>(
 }
 
 // Hook برای استفاده در کامپوننت‌ها
-export const useTrendMovies = () => {
+export const useTrendAll = () => {
   return useQuery({
-    queryKey: ['movies', 'trend'],
-    queryFn: () => fetcher(API_ROUTES.trending.week, {}),
+    queryKey: ['All', 'trend'],
+    queryFn: () => fetcher(API_ROUTES.trending.all, {}),
+    staleTime: 5 * 60 * 1000,
+  })
+}
+export const useTrendPerson= () => {
+  return useQuery({
+    queryKey: ['Person', 'trend'],
+    queryFn: () => fetcher(API_ROUTES.trending.person, {}),
+    staleTime: 5 * 60 * 1000,
+  })
+}
+export const useUnComingMovies = () => {
+  return useQuery({
+    queryKey: ['movies', 'upcoming'],
+    queryFn: () => fetcher(API_ROUTES.movies.upcoming, {}),
+    staleTime: 5 * 60 * 1000,
+  })
+}
+export const usePopularMovies = () => {
+  return useQuery({
+    queryKey: ['movies', 'popular'],
+    queryFn: () => fetcher(API_ROUTES.movies.popular, {}),
+    staleTime: 5 * 60 * 1000,
+  })
+}
+export const usePopularTVs = () => {
+  return useQuery({
+    queryKey: ['TVs', 'popular'],
+    queryFn: () => fetcher(API_ROUTES.tv.popular, {}),
+    staleTime: 5 * 60 * 1000,
+  })
+}
+export const useOnTheAirTVs = () => {
+  return useQuery({
+    queryKey: ['TVs', 'onTheAir'],
+    queryFn: () => fetcher(API_ROUTES.tv.on_the_air, {}),
     staleTime: 5 * 60 * 1000,
   })
 }
