@@ -1,6 +1,10 @@
 export const API_ROUTES = {
   base_url: 'https://api.themoviedb.org/3',
   image_base_url: 'https://image.tmdb.org/t/p',
+  FALLBACK_PROFILE:
+    'https://i.pinimg.com/736x/01/4e/f2/014ef2f860e8e56b27d4a3267e0a193a.jpg',
+  FALLBACK_POSTER:
+    'https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png',
   api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
   default_lang: 'en-US',
 

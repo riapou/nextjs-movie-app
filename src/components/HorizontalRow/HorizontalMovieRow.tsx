@@ -1,12 +1,13 @@
 'use client'
 
-import './HorizontalMovieRow.scss'
+import './HorizontalRow.scss'
 import { MovieCardData as Movie } from '@/types/movie'
-import MovieCard from './_internal/MoveCard'
+import MovieCard from '../UI/card/MoveCard'
 import { getImageUrl } from '@/lib/utils/get-image-url'
 import { useHorizontalScroll } from '@/hooks/useHorizontalScroll'
-import { RowHeader } from './_internal/RowHeader'
-import { ScrollContainer } from './_internal/ScrollContainer'
+import { API_ROUTES } from '@/config/api_routes'
+import { RowHeader } from '../UI/row/RowHeader'
+import { ScrollContainer } from '../UI/row/ScrollContainer'
 
 interface HorizontalMovieRowProps {
   title: string
@@ -29,7 +30,7 @@ const HorizontalMovieRow = ({
   } = useHorizontalScroll()
 
   return (
-    <div className='horizontal-movie-row'>
+    <div className='horizontal-row'>
       <RowHeader title={title} showAllLink={showAllLink} />
       <ScrollContainer
         containerRef={containerRef}
@@ -40,14 +41,17 @@ const HorizontalMovieRow = ({
         scrollRight={scrollRight}
       >
         {movies.map((movie) => (
-            <MovieCard
+          <MovieCard
             key={movie.id}
             id={movie.id}
-              title={movie.title || movie.name}
-              rating={movie.vote_average}
-              poster={getImageUrl({ path: movie.poster_path })}
-              media_type={movie.media_type}
-            />
+            title={movie.title || movie.name}
+            rating={movie.vote_average}
+            poster={
+              getImageUrl({ path: movie.poster_path }) ||
+              API_ROUTES.FALLBACK_POSTER
+            }
+            media_type={movie.media_type}
+          />
         ))}
       </ScrollContainer>
     </div>

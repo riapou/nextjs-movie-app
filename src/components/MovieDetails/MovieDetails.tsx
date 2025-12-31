@@ -443,7 +443,7 @@ const MovieDetails: React.FC = () => {
                 <div className='similar-movies-grid'>
                   {movie.similarMovies.map((similarMovie) => (
                     <Link
-                      to={`/movie/${similarMovie.id}`}
+                      href={`/movie/${similarMovie.id}`}
                       key={similarMovie.id}
                       className='similar-movie-card'
                     >

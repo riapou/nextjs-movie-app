@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
-import HorizontalMovieRow from '@/components/movie-row/HorizontalMovieRow'
+import HorizontalMovieRow from '@/components/HorizontalRow/HorizontalMovieRow'
 
-import HorizontalPersonRow from '@/components/person-row/HorizontalPersonRow'
+import HorizontalPersonRow from '@/components/HorizontalRow/HorizontalPersonRow'
 import { useUpcomingMovies, usePopularMovies } from '@/hooks/queries/movies'
 import { useTrendPerson } from '@/hooks/queries/persons'
 import { useTrendAll } from '@/hooks/queries/trend-all'

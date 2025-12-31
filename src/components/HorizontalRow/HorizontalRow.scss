@@ -1,0 +1,189 @@
+// Color Variables
+:root {
+  --primary-dark-red: #8b0000;
+  --primary-red: #b22222;
+  --light-red: #dc143c;
+  --dark-bg: #0d0d0d;
+  --darker-bg: #1a1a1a;
+  --card-bg: #222222;
+  --text-light: #ffffff;
+  --text-gray: #cccccc;
+  --text-dark: #888888;
+  --shadow-color: rgba(139, 0, 0, 0.3);
+  --scrollbar-color: #444444;
+  --scrollbar-thumb: #8b0000;
+}
+
+// Main Row Styles
+.horizontal-row {
+  margin: 40px 0;
+  position: relative;
+  padding: 0 20px;
+
+  // Row Header
+  .row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 0 10px;
+
+    .row-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-light);
+      position: relative;
+      padding-bottom: 8px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 60px;
+        height: 3px;
+        background-color: var(--primary-red);
+        border-radius: 2px;
+      }
+    }
+
+    // View All Button
+    .show-all-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+      color: var(--primary-red);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border: 2px solid var(--primary-red);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--primary-red);
+        color: var(--text-light);
+        transform: translateX(-5px);
+
+        .arrow {
+          transform: translateX(-3px);
+        }
+      }
+
+      .arrow {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+      }
+    }
+  }
+
+  // Scroll Container
+  .scroll-container-wrapper {
+    position: relative;
+    overflow: hidden;
+
+    // Scroll Overlay Buttons
+    .scroll-overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      pointer-events: none;
+
+      &.left-overlay {
+        left: 0;
+        background: linear-gradient(
+          to left,
+          transparent,
+          rgba(13, 13, 13, 0.9)
+        );
+      }
+
+      &.right-overlay {
+        right: 0;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(13, 13, 13, 0.9)
+        );
+      }
+
+      .overlay-scroll-btn {
+        pointer-events: auto;
+        width: 120px;
+        height: 100%;
+        color: var(--text-light);
+        border: none;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0.1;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    // Scroll Container
+    .scroll-container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 10px;
+      margin: 0 -10px;
+      scrollbar-width: none; // Firefox
+      -ms-overflow-style: none; // IE & Edge
+
+      // Hide scrollbar for Chrome, Safari
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+
+  // Responsive Styles
+  @media (max-width: 768px) {
+    padding: 0 10px;
+    margin: 30px 0;
+
+    .row-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+
+      .row-controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    .scroll-overlay {
+      display: none;
+    }
+
+    .scroll-container {
+      padding: 5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .row-title {
+      font-size: 24px;
+    }
+
+    .show-all-btn {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+  }
+}

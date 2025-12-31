@@ -1,7 +1,7 @@
 import { LeftArrow, RightArrow } from './ScrollArrows'
 
 interface ScrollContainerProps {
-  containerRef: React.RefObject<HTMLDivElement>
+  containerRef: React.RefObject<HTMLDivElement | null>
   onScroll: () => void
   canScrollLeft: boolean
   canScrollRight: boolean
@@ -23,11 +23,7 @@ export const ScrollContainer = ({
     <div className='scroll-container-wrapper'>
       {canScrollLeft && <LeftArrow onClick={scrollLeft} />}
 
-      <div
-        className='scroll-container'
-        ref={containerRef}
-        onScroll={onScroll}
-      >
+      <div className='scroll-container' ref={containerRef} onScroll={onScroll}>
         {children}
       </div>
 
