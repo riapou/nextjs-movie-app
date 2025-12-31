@@ -1,7 +1,7 @@
 export interface TVBase {
   id: number
   name: string
-  media_type: 'tv'
+  media_type?: 'tv'
 }
 export interface TVDetails extends TVBase {
   poster_path: string

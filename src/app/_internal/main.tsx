@@ -7,25 +7,36 @@ import { useUpcomingMovies, usePopularMovies } from '@/hooks/queries/movies'
 import { useTrendPerson } from '@/hooks/queries/persons'
 import { useTrendAll } from '@/hooks/queries/trend-all'
 import { usePopularTVs, useOnTheAirTVs } from '@/hooks/queries/tvs'
+import { normalizeDataList } from '@/lib/utils/normalize-data'
 
 const Main: React.FC = () => {
   const { data } = useTrendAll()
   const trendingMovies = data?.results || []
 
   const { data: upcomingData } = useUpcomingMovies()
-  const uncomingMovies = upcomingData?.results || []
+  const upcomingMovies = upcomingData?.results
+    ? normalizeDataList(upcomingData.results, 'movie')
+    : []
 
   const { data: popularMoviesData } = usePopularMovies()
-  const popularMovies = popularMoviesData?.results || []
+  const popularMovies = popularMoviesData?.results
+    ? normalizeDataList(popularMoviesData.results, 'movie')
+    : []
 
   const { data: popularTVsData } = usePopularTVs()
-  const popularTVs = popularTVsData?.results || []
+  const popularTVs = popularTVsData?.results
+    ? normalizeDataList(popularTVsData.results, 'tv')
+    : []
 
   const { data: unTheAirTVsData } = useOnTheAirTVs()
-  const unTheAirTVs = unTheAirTVsData?.results || []
+  const unTheAirTVs = unTheAirTVsData?.results
+    ? normalizeDataList(unTheAirTVsData.results, 'tv')
+    : []
 
   const { data: personData } = useTrendPerson()
-  const persons = personData?.results || []
+  const persons = personData?.results
+    ? normalizeDataList(personData.results, 'person')
+    : []
 
   return (
     <div className='app'>
@@ -37,7 +48,7 @@ const Main: React.FC = () => {
         />
         <HorizontalMovieRow
           title='Upcoming Movies'
-          movies={uncomingMovies}
+          movies={upcomingMovies}
           showAllLink='/movies/uncomingMovies'
         />
         <HorizontalMovieRow

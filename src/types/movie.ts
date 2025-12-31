@@ -1,7 +1,7 @@
 export interface MovieBase {
   id: number
   title: string
-  media_type: 'movie'
+  media_type?: 'movie'
 }
 export interface MovieDetails extends MovieBase {
   poster_path: string

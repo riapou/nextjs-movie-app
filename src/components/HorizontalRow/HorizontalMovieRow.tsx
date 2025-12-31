@@ -1,17 +1,17 @@
 'use client'
 
 import './HorizontalRow.scss'
-import { MovieCardData as Movie } from '@/types/movie'
 import MovieCard from '../UI/card/MoveCard'
 import { getImageUrl } from '@/lib/utils/get-image-url'
 import { useHorizontalScroll } from '@/hooks/useHorizontalScroll'
 import { API_ROUTES } from '@/config/api_routes'
-import { RowHeader } from '../UI/row/RowHeader'
-import { ScrollContainer } from '../UI/row/ScrollContainer'
+import { RowHeader } from './_internal/RowHeader'
+import { ScrollContainer } from './_internal/ScrollContainer'
+import { MediaBase } from '@/types/media'
 
 interface HorizontalMovieRowProps {
   title: string
-  movies: Movie[]
+  movies: MediaBase[]
   showAllLink?: string
 }
 
@@ -44,7 +44,7 @@ const HorizontalMovieRow = ({
           <MovieCard
             key={movie.id}
             id={movie.id}
-            title={movie.title || movie.name}
+            title={movie.media_type === 'movie' ? movie.title|| 'na' : movie.name || 'na'}
             rating={movie.vote_average}
             poster={
               getImageUrl({ path: movie.poster_path }) ||
