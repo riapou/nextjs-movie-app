@@ -12,14 +12,19 @@ export interface MovieDetails extends MovieBase {
     name: string
     poster_path: string
     backdrop_path: string
-    media_type: 'collection'
+    media_type?: 'collection'
   }
-  genres: []
+  genres: {
+    id: number
+    name: string
+  }[]
   vote_average: number
   status: string
   release_date: string
   vote_count: number
   production_countries: { iso_3166_1: string; name: string }
+  runtime: number
+  tagline: string
 }
 
 export type MovieCardData = Pick<

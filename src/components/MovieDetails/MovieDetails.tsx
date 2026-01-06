@@ -1,157 +1,44 @@
 'use client'
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import './MovieDetails.css'
+import './MovieDetails.scss'
+import { MovieDetails as movie } from '@/types/movie'
+import { MovieCreditsResponse } from '@/types/person'
+import { getImageUrl } from '@/lib/utils/get-image-url'
 
 // Types
-interface MovieDetails {
-  id: number
-  title: string
-  originalTitle: string
-  posterUrl: string
-  backdropUrl: string
-  rating: number
-  voteCount: number
-  releaseDate: string
-  runtime: number
-  genres: string[]
-  overview: string
-  director: string
-  cast: CastMember[]
-  similarMovies: SimilarMovie[]
-  trailerUrl: string
-}
+// interface MovieDetails {
+//   id: number
+//   title: string
+//   originalTitle: string
+//   posterUrl: string
+//   backdropUrl: string
+//   rating: number
+//   voteCount: number
+//   releaseDate: string
+//   runtime: number
+//   genres: string[]
+//   overview: string
+//   director: string
+//   cast: CastMember[]
+//   similarMovies: SimilarMovie[]
+//   trailerUrl: string
+// }
 
-interface CastMember {
-  id: number
-  name: string
-  character: string
-  profileUrl: string
-}
+// interface SimilarMovie {
+//   id: number
+//   title: string
+//   posterUrl: string
+//   rating: number
+// }
 
-interface SimilarMovie {
-  id: number
-  title: string
-  posterUrl: string
-  rating: number
-}
-
-const MovieDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const [movie, setMovie] = useState<MovieDetails | null>(null)
-  const [loading, setLoading] = useState(true)
+const MovieDetails: React.FC<{
+  movie: movie
+  loading: boolean
+  credits: MovieCreditsResponse
+}> = ({ movie, loading, credits }) => {
   const [activeTab, setActiveTab] = useState('overview')
   const [showTrailer, setShowTrailer] = useState(false)
-
-  // Sample data
-  useEffect(() => {
-    // In a real project, this would be an API call
-    const fetchMovieDetails = async () => {
-      setLoading(true)
-
-      // Sample data for demonstration
-      const sampleMovie: MovieDetails = {
-        id: 1,
-        title: 'The Godfather',
-        originalTitle: 'The Godfather',
-        posterUrl:
-          'https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
-        backdropUrl:
-          'https://image.tmdb.org/t/p/original/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg',
-        rating: 9.2,
-        voteCount: 1845,
-        releaseDate: '1972-03-14',
-        runtime: 175,
-        genres: ['Drama', 'Crime'],
-        overview:
-          'The story of the Corleone family, one of the five mafia families in New York in the 1940s. When Don Vito Corleone, the head of the family, is targeted for assassination, his youngest son Michael, who had been reluctant to join the family business, steps in to take revenge and take control of the family business.',
-        director: 'Francis Ford Coppola',
-        cast: [
-          {
-            id: 1,
-            name: 'Marlon Brando',
-            character: 'Don Vito Corleone',
-            profileUrl:
-              'https://image.tmdb.org/t/p/w200/e2uQoKztYtOQqekXg8nqkAqJqKX.jpg',
-          },
-          {
-            id: 2,
-            name: 'Al Pacino',
-            character: 'Michael Corleone',
-            profileUrl:
-              'https://image.tmdb.org/t/p/w200/2dGBb1Y62pDvqRkL6o6X2bNi2So.jpg',
-          },
-          {
-            id: 3,
-            name: 'Robert Duvall',
-            character: 'Tom Hagen',
-            profileUrl:
-              'https://image.tmdb.org/t/p/w200/fOscaVWkFhZhqk4r2a8CLB1QnV6.jpg',
-          },
-          {
-            id: 4,
-            name: 'Diane Keaton',
-            character: 'Kay Adams',
-            profileUrl:
-              'https://image.tmdb.org/t/p/w200/6W8oDuVGh1RSCb6WrQfB0MKUZiE.jpg',
-          },
-          {
-            id: 5,
-            name: 'James Caan',
-            character: 'Sonny Corleone',
-            profileUrl:
-              'https://image.tmdb.org/t/p/w200/oU7ybeuHYQqo6FpDAobqBsWn8tG.jpg',
-          },
-          {
-            id: 6,
-            name: 'John Cazale',
-            character: 'Fredo Corleone',
-            profileUrl:
-              'https://image.tmdb.org/t/p/w200/5xqICnKqL2v5LEcpq2nF0vKVWKv.jpg',
-          },
-        ],
-        similarMovies: [
-          {
-            id: 2,
-            title: 'The Godfather: Part II',
-            posterUrl:
-              'https://image.tmdb.org/t/p/w500/3bh1jUoWqvQXvLopVs2kZg2N1S5.jpg',
-            rating: 9.0,
-          },
-          {
-            id: 3,
-            title: 'Goodfellas',
-            posterUrl:
-              'https://image.tmdb.org/t/p/w500/6yDg2eKZgGMmxhqgGVvPzC5L4hV.jpg',
-            rating: 8.7,
-          },
-          {
-            id: 4,
-            title: 'The Shawshank Redemption',
-            posterUrl:
-              'https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
-            rating: 9.3,
-          },
-          {
-            id: 5,
-            title: 'Scarface',
-            posterUrl:
-              'https://image.tmdb.org/t/p/w500/iQ5ztdjvteGeboxtmRdXEChJOHh.jpg',
-            rating: 8.3,
-          },
-        ],
-        trailerUrl: 'https://www.youtube.com/embed/sY1S34973zA',
-      }
-
-      setTimeout(() => {
-        setMovie(sampleMovie)
-        setLoading(false)
-      }, 800)
-    }
-
-    fetchMovieDetails()
-  }, [id])
 
   // Function to render rating stars
   const renderRatingStars = (rating: number) => {
@@ -230,7 +117,9 @@ const MovieDetails: React.FC = () => {
       <div
         className='movie-backdrop'
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(139, 0, 0, 0.3)), url(${movie.backdropUrl})`,
+          backgroundImage: ` url(${getImageUrl({
+            path: movie.backdrop_path,
+          })})`,
         }}
       >
         <div className='backdrop-overlay'>
@@ -242,9 +131,13 @@ const MovieDetails: React.FC = () => {
             <div className='movie-header'>
               <div className='poster-container'>
                 <img
-                  src={movie.posterUrl}
+                  src={
+                    getImageUrl({ path: movie.poster_path }) ||
+                    'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'
+                  }
                   alt={movie.title}
                   className='movie-poster'
+                  loading='lazy'
                 />
                 <div className='poster-overlay'>
                   <button
@@ -259,9 +152,7 @@ const MovieDetails: React.FC = () => {
               <div className='movie-header-info'>
                 <div className='movie-title-section'>
                   <h1 className='movie-title'>{movie.title}</h1>
-                  <h2 className='movie-original-title'>
-                    {movie.originalTitle}
-                  </h2>
+                  <h2 className='movie-original-title'>originalTitle</h2>
                 </div>
 
                 <div className='movie-meta'>
@@ -269,13 +160,15 @@ const MovieDetails: React.FC = () => {
                     <span className='meta-label'>Rating</span>
                     <div className='rating-display'>
                       <div className='rating-stars-large'>
-                        {renderRatingStars(movie.rating)}
+                        {renderRatingStars(movie.vote_average)}
                       </div>
                       <div className='rating-score-large'>
-                        <span className='score'>{movie.rating.toFixed(1)}</span>
+                        <span className='score'>
+                          {movie.vote_average.toFixed(1)}
+                        </span>
                         <span className='score-out-of'>/10</span>
                         <span className='vote-count'>
-                          ({movie.voteCount} votes)
+                          ({movie.vote_count} votes)
                         </span>
                       </div>
                     </div>
@@ -284,7 +177,7 @@ const MovieDetails: React.FC = () => {
                   <div className='meta-item'>
                     <span className='meta-label'>Release Date</span>
                     <span className='meta-value'>
-                      {formatDate(movie.releaseDate)}
+                      {formatDate(movie.release_date)}
                     </span>
                   </div>
 
@@ -300,7 +193,7 @@ const MovieDetails: React.FC = () => {
                     <div className='genres'>
                       {movie.genres.map((genre, index) => (
                         <span key={index} className='genre-tag'>
-                          {genre}
+                          {genre.name}
                         </span>
                       ))}
                     </div>
@@ -309,7 +202,10 @@ const MovieDetails: React.FC = () => {
                   <div className='meta-item'>
                     <span className='meta-label'>Director</span>
                     <span className='meta-value director'>
-                      {movie.director}
+                      {
+                        credits.crew.find((member) => member.job === 'Director')
+                          ?.name
+                      }
                     </span>
                   </div>
                 </div>
@@ -391,11 +287,11 @@ const MovieDetails: React.FC = () => {
               <div className='cast-section'>
                 <h3>Cast</h3>
                 <div className='cast-grid'>
-                  {movie.cast.map((person) => (
+                  {credits.cast.map((person) => (
                     <div key={person.id} className='cast-card'>
                       <div className='cast-photo'>
                         <img
-                          src={person.profileUrl}
+                          src={getImageUrl({ path: person.profile_path }) || ''}
                           alt={person.name}
                           onError={(e) => {
                             e.currentTarget.src =
@@ -416,7 +312,13 @@ const MovieDetails: React.FC = () => {
                   <div className='crew-list'>
                     <div className='crew-item'>
                       <span className='crew-role'>Director</span>
-                      <span className='crew-name'>{movie.director}</span>
+                      <span className='crew-name'>
+                        {
+                          credits.crew.find(
+                            (member) => member.job === 'Director'
+                          )?.name
+                        }
+                      </span>
                     </div>
                     <div className='crew-item'>
                       <span className='crew-role'>Producer</span>
@@ -441,7 +343,7 @@ const MovieDetails: React.FC = () => {
               <div className='similar-movies-section'>
                 <h3>Similar Movies</h3>
                 <div className='similar-movies-grid'>
-                  {movie.similarMovies.map((similarMovie) => (
+                  {/* {movie.similarMovies.map((similarMovie) => (
                     <Link
                       href={`/movie/${similarMovie.id}`}
                       key={similarMovie.id}
@@ -458,7 +360,7 @@ const MovieDetails: React.FC = () => {
                       </div>
                       <h4 className='similar-title'>{similarMovie.title}</h4>
                     </Link>
-                  ))}
+                  ))} */}
                 </div>
               </div>
             )}
@@ -486,9 +388,10 @@ const MovieDetails: React.FC = () => {
                     </div>
                     <p className='review-text'>
                       The Godfather is one of the few films that lives up to its
-                      reputation. It's a dark, complex epic that masterfully
-                      tells the story of a mafia family. Marlon Brando's
-                      performance alone makes this film worth watching.
+                      reputation. It&apos;s a dark, complex epic that
+                      masterfully tells the story of a mafia family. Marlon
+                      Brando&apos;s performance alone makes this film worth
+                      watching.
                     </p>
                   </div>
 
@@ -532,7 +435,7 @@ const MovieDetails: React.FC = () => {
           <div className='modal-content' onClick={(e) => e.stopPropagation()}>
             <div className='modal-header'>
               <h3>{movie.title} Trailer</h3>
-              <button
+              {/* <button
                 className='close-modal'
                 onClick={() => setShowTrailer(false)}
               >
@@ -548,7 +451,7 @@ const MovieDetails: React.FC = () => {
                 frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                 allowFullScreen
-              ></iframe>
+              ></iframe> */}
             </div>
           </div>
         </div>
