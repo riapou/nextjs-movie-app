@@ -2,9 +2,11 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import './MovieDetails.scss'
-import { MovieDetails as movie } from '@/types/movie'
+import { MovieDetails as movie, MovieCardData } from '@/types/movie'
 import { MovieCreditsResponse } from '@/types/person'
 import { getImageUrl } from '@/lib/utils/get-image-url'
+import MovieCard from '../UI/card/MoveCard'
+import { Review } from '@/hooks/queries/movies'
 
 // Types
 // interface MovieDetails {
@@ -36,7 +38,9 @@ const MovieDetails: React.FC<{
   movie: movie
   loading: boolean
   credits: MovieCreditsResponse
-}> = ({ movie, loading, credits }) => {
+  recommendationMovies: MovieCardData[]
+  reviews: Review[]
+}> = ({ movie, loading, credits, recommendationMovies, reviews }) => {
   const [activeTab, setActiveTab] = useState('overview')
   const [showTrailer, setShowTrailer] = useState(false)
 
@@ -258,7 +262,7 @@ const MovieDetails: React.FC<{
           <div className='tab-content'>
             {activeTab === 'overview' && (
               <div className='overview-section'>
-                <h3>Synopsis</h3>
+                <h3 className='tab-title'>Synopsis</h3>
                 <p className='overview-text'>{movie.overview}</p>
 
                 <div className='facts-section'>
@@ -285,7 +289,7 @@ const MovieDetails: React.FC<{
 
             {activeTab === 'cast' && (
               <div className='cast-section'>
-                <h3>Cast</h3>
+                <h3 className='tab-title'>Cast</h3>
                 <div className='cast-grid'>
                   {credits.cast.map((person) => (
                     <div key={person.id} className='cast-card'>
@@ -341,85 +345,53 @@ const MovieDetails: React.FC<{
 
             {activeTab === 'similar' && (
               <div className='similar-movies-section'>
-                <h3>Similar Movies</h3>
+                <h3 className='tab-title'>Similar Movies</h3>
                 <div className='similar-movies-grid'>
-                  {/* {movie.similarMovies.map((similarMovie) => (
-                    <Link
-                      href={`/movie/${similarMovie.id}`}
+                  {recommendationMovies.map((similarMovie) => (
+                    <MovieCard
                       key={similarMovie.id}
-                      className='similar-movie-card'
-                    >
-                      <div className='similar-poster'>
-                        <img
-                          src={similarMovie.posterUrl}
-                          alt={similarMovie.title}
-                        />
-                        <div className='similar-rating'>
-                          {similarMovie.rating.toFixed(1)}
-                        </div>
-                      </div>
-                      <h4 className='similar-title'>{similarMovie.title}</h4>
-                    </Link>
-                  ))} */}
+                      id={similarMovie.id}
+                      title={similarMovie.title}
+                      poster={
+                        getImageUrl({ path: similarMovie.poster_path }) || ''
+                      }
+                      rating={similarMovie.vote_average}
+                      media_type={similarMovie.media_type!}
+                    />
+                  ))}
                 </div>
               </div>
             )}
 
             {activeTab === 'reviews' && (
               <div className='reviews-section'>
-                <h3>Reviews</h3>
+                <h3 className='tab-title'>Reviews</h3>
                 <div className='reviews-list'>
-                  <div className='review-card'>
-                    <div className='review-header'>
-                      <div className='reviewer'>
-                        <img
-                          src='https://image.tmdb.org/t/p/w200/9mdAohLsDu36WaXV2N3SQ388bvz.jpg'
-                          alt='Reviewer'
-                          className='reviewer-avatar'
-                        />
-                        <div className='reviewer-info'>
-                          <h4>Roger Ebert</h4>
-                          <span className='review-date'>March 24, 1972</span>
+                  {reviews.map((review) => (
+                    <div key={review.id} className='review-card'>
+                      <div className='review-header'>
+                        <div className='reviewer'>
+                          <img
+                            src={getImageUrl({
+                              path: review.author_details.avatar_path,
+                            })}
+                            alt='Reviewer'
+                            className='reviewer-avatar'
+                          />
+                          <div className='reviewer-info'>
+                            <h4>{review.author}</h4>
+                            <span className='review-date'>{review.created_at}</span>
+                          </div>
+                        </div>
+                        <div className='review-rating'>
+                          {renderRatingStars(review.author_details.rating)}
                         </div>
                       </div>
-                      <div className='review-rating'>
-                        {renderRatingStars(9.5)}
-                      </div>
+                      <p className='review-text'>
+                        {review.content}
+                      </p>
                     </div>
-                    <p className='review-text'>
-                      The Godfather is one of the few films that lives up to its
-                      reputation. It&apos;s a dark, complex epic that
-                      masterfully tells the story of a mafia family. Marlon
-                      Brando&apos;s performance alone makes this film worth
-                      watching.
-                    </p>
-                  </div>
-
-                  <div className='review-card'>
-                    <div className='review-header'>
-                      <div className='reviewer'>
-                        <img
-                          src='https://image.tmdb.org/t/p/w200/8I37rZL3P9yZ1bW2KbMEWOED1vJ.jpg'
-                          alt='Reviewer'
-                          className='reviewer-avatar'
-                        />
-                        <div className='reviewer-info'>
-                          <h4>Peter Travers</h4>
-                          <span className='review-date'>March 15, 1972</span>
-                        </div>
-                      </div>
-                      <div className='review-rating'>
-                        {renderRatingStars(9.0)}
-                      </div>
-                    </div>
-                    <p className='review-text'>
-                      Francis Ford Coppola has created a masterpiece that time
-                      has not diminished. The Godfather is not just a crime
-                      film, but a deep study of power, family, and sacrifice.
-                      The cinematography, music, and performances are all at
-                      their peak.
-                    </p>
-                  </div>
+                  ))}
                 </div>
 
                 <button className='load-more-reviews'>Load More Reviews</button>

@@ -24,7 +24,8 @@ export const API_ROUTES = {
     credits: (id: number | string) => `/movie/${id}/credits`,
     videos: (id: number | string) => `/movie/${id}/videos`,
     images: (id: number | string) => `/movie/${id}/images`,
-    similar: (id: number | string) => `/movie/${id}/similar`,
+    recommendations: (id: number | string) => `/movie/${id}/recommendations`,
+    reviews: (id: number | string) => `/movie/${id}/reviews`,
   },
 
   tv: {

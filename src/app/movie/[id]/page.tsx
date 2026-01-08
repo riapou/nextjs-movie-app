@@ -10,8 +10,5 @@ type PageProps = {
 
 export default async function Details({ params }: PageProps) {
   const { id } = await params
-
-  console.log("ID:", id) 
-
   return <Main id={Number(id)} />
 }
