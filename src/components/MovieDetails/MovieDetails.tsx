@@ -7,32 +7,9 @@ import { MovieCreditsResponse } from '@/types/person'
 import { getImageUrl } from '@/lib/utils/get-image-url'
 import MovieCard from '../UI/card/MoveCard'
 import { Review } from '@/hooks/queries/movies'
+import PersonCard from '../UI/card/PersonCard'
 
-// Types
-// interface MovieDetails {
-//   id: number
-//   title: string
-//   originalTitle: string
-//   posterUrl: string
-//   backdropUrl: string
-//   rating: number
-//   voteCount: number
-//   releaseDate: string
-//   runtime: number
-//   genres: string[]
-//   overview: string
-//   director: string
-//   cast: CastMember[]
-//   similarMovies: SimilarMovie[]
-//   trailerUrl: string
-// }
 
-// interface SimilarMovie {
-//   id: number
-//   title: string
-//   posterUrl: string
-//   rating: number
-// }
 
 const MovieDetails: React.FC<{
   movie: movie
@@ -128,11 +105,7 @@ const MovieDetails: React.FC<{
       >
         <div className='backdrop-overlay'>
           <div className='container'>
-            <Link href='/' className='back-button'>
-              ← Back to Movies
-            </Link>
-
-            <div className='movie-header'>
+           <div className='movie-header'>
               <div className='poster-container'>
                 <img
                   src={
@@ -156,7 +129,6 @@ const MovieDetails: React.FC<{
               <div className='movie-header-info'>
                 <div className='movie-title-section'>
                   <h1 className='movie-title'>{movie.title}</h1>
-                  <h2 className='movie-original-title'>originalTitle</h2>
                 </div>
 
                 <div className='movie-meta'>
@@ -264,26 +236,6 @@ const MovieDetails: React.FC<{
               <div className='overview-section'>
                 <h3 className='tab-title'>Synopsis</h3>
                 <p className='overview-text'>{movie.overview}</p>
-
-                <div className='facts-section'>
-                  <h4>Interesting Facts</h4>
-                  <ul className='facts-list'>
-                    <li>
-                      The Godfather won 3 Academy Awards including Best Picture
-                    </li>
-                    <li>
-                      Marlon Brando won the Oscar for Best Actor for his role in
-                      this film
-                    </li>
-                    <li>
-                      The film was selected for preservation in the U.S.
-                      National Film Registry in 1990
-                    </li>
-                    <li>
-                      The famous horse head scene was inspired by a real event
-                    </li>
-                  </ul>
-                </div>
               </div>
             )}
 
@@ -292,22 +244,13 @@ const MovieDetails: React.FC<{
                 <h3 className='tab-title'>Cast</h3>
                 <div className='cast-grid'>
                   {credits.cast.map((person) => (
-                    <div key={person.id} className='cast-card'>
-                      <div className='cast-photo'>
-                        <img
-                          src={getImageUrl({ path: person.profile_path }) || ''}
-                          alt={person.name}
-                          onError={(e) => {
-                            e.currentTarget.src =
-                              'https://via.placeholder.com/150x225/8B0000/FFFFFF?text=No+Image'
-                          }}
-                        />
-                      </div>
-                      <div className='cast-info'>
-                        <h4 className='cast-name'>{person.name}</h4>
-                        <p className='cast-character'>{person.character}</p>
-                      </div>
-                    </div>
+                    <PersonCard
+                      key={person.id}
+                      id={person.id}
+                      name={person.name}
+                      profile={getImageUrl({ path: person.profile_path }) || ''}
+                      media_type='person'
+                    />
                   ))}
                 </div>
 
@@ -326,17 +269,33 @@ const MovieDetails: React.FC<{
                     </div>
                     <div className='crew-item'>
                       <span className='crew-role'>Producer</span>
-                      <span className='crew-name'>Albert S. Ruddy</span>
+                      <span className='crew-name'>
+                        {
+                          credits.crew.find(
+                            (member) => member.job === 'Producer'
+                          )?.name
+                        }
+                      </span>
                     </div>
                     <div className='crew-item'>
                       <span className='crew-role'>Screenplay</span>
                       <span className='crew-name'>
-                        Mario Puzo, Francis Ford Coppola
+                        {
+                          credits.crew.find(
+                            (member) => member.job === 'Screenplay'
+                          )?.name
+                        }
                       </span>
                     </div>
                     <div className='crew-item'>
                       <span className='crew-role'>Music</span>
-                      <span className='crew-name'>Nino Rota</span>
+                      <span className='crew-name'>
+                        {
+                          credits.crew.find(
+                            (member) => member.job === 'Music'
+                          )?.name
+                        }
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -380,16 +339,16 @@ const MovieDetails: React.FC<{
                           />
                           <div className='reviewer-info'>
                             <h4>{review.author}</h4>
-                            <span className='review-date'>{review.created_at}</span>
+                            <span className='review-date'>
+                              {review.created_at}
+                            </span>
                           </div>
                         </div>
                         <div className='review-rating'>
                           {renderRatingStars(review.author_details.rating)}
                         </div>
                       </div>
-                      <p className='review-text'>
-                        {review.content}
-                      </p>
+                      <p className='review-text'>{review.content}</p>
                     </div>
                   ))}
                 </div>
@@ -428,18 +387,6 @@ const MovieDetails: React.FC<{
           </div>
         </div>
       )}
-
-      {/* Footer */}
-      <footer className='movie-footer'>
-        <div className='container'>
-          <p>© 2024 CineTech. All rights reserved.</p>
-          <div className='footer-links'>
-            <a href='#'>Privacy Policy</a>
-            <a href='#'>Terms of Use</a>
-            <a href='#'>Contact Us</a>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

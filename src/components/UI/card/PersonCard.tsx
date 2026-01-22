@@ -3,13 +3,10 @@
 import Card from '@/components/UI/card/card'
 import { formatName } from '@/lib/utils/format-name'
 
-const FALLBACK_PROFILE =
-  'https://i.pinimg.com/736x/01/4e/f2/014ef2f860e8e56b27d4a3267e0a193a.jpg'
-
 type PersonCardProps = {
   id: number
   name: string
-  profile?: string
+  profile: string
   media_type?: 'person'
 }
 
@@ -23,8 +20,8 @@ const PersonCard = ({
 
   return (
     <Card
-      href={`/${media_type}/${id}`}
-      image={profile || FALLBACK_PROFILE}
+      href={`/person/${id}`}
+      image={profile}
       alt={formattedName}
       title={formattedName}
       className="person-card"
