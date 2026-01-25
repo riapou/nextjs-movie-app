@@ -1,60 +1,42 @@
-'use client'
-
-import './HorizontalRow.scss'
-import MovieCard from '../UI/card/MoveCard'
-import { getImageUrl } from '@/lib/utils/get-image-url'
-import { useHorizontalScroll } from '@/hooks/useHorizontalScroll'
-import { API_ROUTES } from '@/config/api_routes'
-import { RowHeader } from './_internal/RowHeader'
-import { ScrollContainer } from './_internal/ScrollContainer'
+import HorizontalRowBase from './_internal/HorizontalRowBase'
+import MovieCard from '../card/MoveCard'
 import { MediaBase } from '@/types/media'
+import { getImageUrl } from '@/lib/utils/get-image-url'
 
-interface HorizontalMovieRowProps {
+interface Props {
   title: string
   movies: MediaBase[]
   showAllLink?: string
+  isLoding: boolean
 }
 
 const HorizontalMovieRow = ({
   title,
   movies,
   showAllLink,
-}: HorizontalMovieRowProps) => {
-  const {
-    containerRef,
-    scrollLeft,
-    scrollRight,
-    handleScroll,
-    canScrollLeft,
-    canScrollRight,
-  } = useHorizontalScroll()
-
+  isLoding,
+}: Props) => {
   return (
-    <div className='horizontal-row'>
-      <RowHeader title={title} showAllLink={showAllLink} />
-      <ScrollContainer
-        containerRef={containerRef}
-        onScroll={handleScroll}
-        canScrollLeft={canScrollLeft}
-        canScrollRight={canScrollRight}
-        scrollLeft={scrollLeft}
-        scrollRight={scrollRight}
-      >
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            id={movie.id}
-            title={movie.media_type === 'movie' ? movie.title|| 'na' : movie.name || 'na'}
-            rating={movie.vote_average}
-            poster={
-              getImageUrl({ path: movie.poster_path }) ||
-              API_ROUTES.FALLBACK_POSTER
-            }
-            media_type={movie.media_type}
-          />
-        ))}
-      </ScrollContainer>
-    </div>
+    <HorizontalRowBase
+      title={title}
+      items={movies}
+      isLoading={isLoding}
+      showAllLink={showAllLink}
+      renderItem={(movie) => (
+        <MovieCard
+          key={movie.id}
+          id={movie.id}
+          title={
+            movie.media_type === 'movie'
+              ? movie.title || 'na'
+              : movie.name || 'na'
+          }
+          rating={movie.vote_average}
+          poster={getImageUrl({ path: movie.poster_path })}
+          media_type={movie.media_type}
+        />
+      )}
+    />
   )
 }
 

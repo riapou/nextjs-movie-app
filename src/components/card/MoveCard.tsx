@@ -1,10 +1,8 @@
-// components/cards/MovieCard.tsx
 'use client'
 
 import { Star } from 'lucide-react'
 import { formatName } from '@/lib/utils/format-name'
-// import './MoveCard.css'
-import Card from '@/components/UI/card/card'
+import Card from './_internal/card'
 
 type MovieCardProps = {
   id: number

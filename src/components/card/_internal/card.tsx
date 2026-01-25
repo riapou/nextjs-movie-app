@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({
   className = '',
 }) => {
   return (
-    <Link href={href} className={`flex flex-col items-center gap-2 `}>
+    <Link href={href} className={`flex flex-col items-center gap-2 ${className}`}>
       <div className="card-image-wrapper">
         <img
           src={image}

@@ -11,6 +11,8 @@ export default function Home() {
     isLoading: boolean
     isError: boolean
   }
+  
+
 
   const movies = data?.results ?? []
 
