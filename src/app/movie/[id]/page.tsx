@@ -1,6 +1,6 @@
 // app/movie/[id]/page.tsx
 
-import Main from "@/components/MovieDetails/main"
+import Main from "@/components/movie-details/Main"
 
 type PageProps = {
   params: Promise<{
