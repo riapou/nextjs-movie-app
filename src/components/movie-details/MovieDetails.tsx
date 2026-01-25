@@ -5,10 +5,9 @@ import './MovieDetails.scss'
 import { MovieDetails as movie, MovieCardData } from '@/types/movie'
 import { MovieCreditsResponse } from '@/types/person'
 import { getImageUrl } from '@/lib/utils/get-image-url'
-import MovieCard from '../UI/card/MoveCard'
 import { Review } from '@/hooks/queries/movies'
-import PersonCard from '../UI/card/PersonCard'
-
+import MovieCard from '../card/MoveCard'
+import PersonCard from '../card/PersonCard'
 
 
 const MovieDetails: React.FC<{

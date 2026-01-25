@@ -38,21 +38,32 @@ export interface MovieData {
   tagline: string
 }
 
+// Helper function to get image by ID (subtract 1 because array is 0-indexed)
+const getImageByIndex = (id: number) => {
+  const index = id; // Subtract 1 to convert from 1-based ID to 0-based array index
+  // Ensure index is within bounds
+  if (index >= 1 && index < images.length) {
+    return images[index];
+  }
+  // Fallback to first image if index is out of bounds
+  return images[10];
+}
+
 // 3. The Data Array
 const movies: MovieData[] = [
   {
     id: 1,
     title: 'Inception',
     media_type: 'movie',
-    poster_path: images[1].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(1).poster,
+    backdrop_path: getImageByIndex(1).backdrop,
     overview:
       'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
     belongs_to_collection: {
       id: 1234,
       name: 'Inception Collection',
-      poster_path: images[1].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(1).poster,
+      backdrop_path: getImageByIndex(1).backdrop,
       media_type: 'collection',
     },
     genres: [
@@ -75,15 +86,15 @@ const movies: MovieData[] = [
     id: 2,
     title: 'The Godfather',
     media_type: 'movie',
-    poster_path: images[3].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(2).poster,
+    backdrop_path: getImageByIndex(2).backdrop,
     overview:
       'The aging patriarch of an organized crime dynasty transfers control to his reluctant son.',
     belongs_to_collection: {
       id: 5678,
       name: 'The Godfather Collection',
-      poster_path: images[3].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(2).poster,
+      backdrop_path: getImageByIndex(2).backdrop,
     },
     genres: [
       { id: 18, name: 'Drama' },
@@ -103,15 +114,15 @@ const movies: MovieData[] = [
     id: 3,
     title: 'The Dark Knight',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(3).poster,
+    backdrop_path: getImageByIndex(3).backdrop,
     overview:
       'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
     belongs_to_collection: {
       id: 263,
       name: 'The Dark Knight Trilogy',
-      poster_path: images[2].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(3).poster,
+      backdrop_path: getImageByIndex(3).backdrop,
     },
     genres: [
       { id: 28, name: 'Action' },
@@ -133,8 +144,8 @@ const movies: MovieData[] = [
     id: 4,
     title: 'Parasite',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(4).poster,
+    backdrop_path: getImageByIndex(4).backdrop,
     overview:
       'A poor family schemes to become employed by a wealthy family by infiltrating their household and posing as unrelated, highly qualified individuals.',
     belongs_to_collection: null,
@@ -155,8 +166,8 @@ const movies: MovieData[] = [
     id: 5,
     title: 'Pulp Fiction',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(5).poster,
+    backdrop_path: getImageByIndex(5).backdrop,
     overview:
       'The lives of two mob hitmen, a boxer, a gangster and his wife intertwine in four tales of violence and redemption.',
     belongs_to_collection: null,
@@ -179,8 +190,8 @@ const movies: MovieData[] = [
     id: 6,
     title: 'Spirited Away',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(6).poster,
+    backdrop_path: getImageByIndex(6).backdrop,
     overview:
       'A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.',
     belongs_to_collection: null,
@@ -201,8 +212,8 @@ const movies: MovieData[] = [
     id: 7,
     title: 'The Shawshank Redemption',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(7).poster,
+    backdrop_path: getImageByIndex(7).backdrop,
     overview:
       'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
     belongs_to_collection: null,
@@ -221,15 +232,15 @@ const movies: MovieData[] = [
     id: 8,
     title: 'Avengers: Endgame',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(8).poster,
+    backdrop_path: getImageByIndex(8).backdrop,
     overview:
       "After the devastating events of Avengers: Infinity War, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
     belongs_to_collection: {
       id: 86311,
       name: 'The Avengers Collection',
-      poster_path: images[2].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(8).poster,
+      backdrop_path: getImageByIndex(8).backdrop,
     },
     genres: [
       { id: 12, name: 'Adventure' },
@@ -250,8 +261,8 @@ const movies: MovieData[] = [
     id: 9,
     title: 'Interstellar',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(9).poster,
+    backdrop_path: getImageByIndex(9).backdrop,
     overview:
       "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
     belongs_to_collection: null,
@@ -275,15 +286,15 @@ const movies: MovieData[] = [
     id: 10,
     title: 'The Matrix',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(10).poster,
+    backdrop_path: getImageByIndex(10).backdrop,
     overview:
       'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
     belongs_to_collection: {
       id: 234,
       name: 'The Matrix Collection',
-      poster_path: images[2].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(10).poster,
+      backdrop_path: getImageByIndex(10).backdrop,
     },
     genres: [
       { id: 28, name: 'Action' },
@@ -304,8 +315,8 @@ const movies: MovieData[] = [
     id: 11,
     title: 'La La Land',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(11).poster,
+    backdrop_path: getImageByIndex(11).backdrop,
     overview:
       'While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.',
     belongs_to_collection: null,
@@ -328,8 +339,8 @@ const movies: MovieData[] = [
     id: 12,
     title: 'Gladiator',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(12).poster,
+    backdrop_path: getImageByIndex(12).backdrop,
     overview:
       'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.',
     belongs_to_collection: null,
@@ -353,15 +364,15 @@ const movies: MovieData[] = [
     id: 13,
     title: 'The Lord of the Rings: The Return of the King',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(13).poster,
+    backdrop_path: getImageByIndex(13).backdrop,
     overview:
       "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
     belongs_to_collection: {
       id: 119,
       name: 'The Lord of the Rings Collection',
-      poster_path: images[2].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(13).poster,
+      backdrop_path: getImageByIndex(13).backdrop,
     },
     genres: [
       { id: 12, name: 'Adventure' },
@@ -383,8 +394,8 @@ const movies: MovieData[] = [
     id: 14,
     title: 'Fight Club',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(14).poster,
+    backdrop_path: getImageByIndex(14).backdrop,
     overview:
       'An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.',
     belongs_to_collection: null,
@@ -403,15 +414,15 @@ const movies: MovieData[] = [
     id: 15,
     title: 'The Silence of the Lambs',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(15).poster,
+    backdrop_path: getImageByIndex(15).backdrop,
     overview:
       'A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.',
     belongs_to_collection: {
       id: 864,
       name: 'Hannibal Lecter Collection',
-      poster_path: images[2].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(15).poster,
+      backdrop_path: getImageByIndex(15).backdrop,
     },
     genres: [
       { id: 80, name: 'Crime' },
@@ -433,8 +444,8 @@ const movies: MovieData[] = [
     id: 16,
     title: 'The Social Network',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(16).poster,
+    backdrop_path: getImageByIndex(16).backdrop,
     overview:
       'Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, but is later sued by two brothers who claimed he stole their idea.',
     belongs_to_collection: null,
@@ -457,8 +468,8 @@ const movies: MovieData[] = [
     id: 17,
     title: 'Whiplash',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(17).poster,
+    backdrop_path: getImageByIndex(17).backdrop,
     overview:
       "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.",
     belongs_to_collection: null,
@@ -480,8 +491,8 @@ const movies: MovieData[] = [
     id: 18,
     title: 'Goodfellas',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(18).poster,
+    backdrop_path: getImageByIndex(18).backdrop,
     overview:
       'The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate.',
     belongs_to_collection: null,
@@ -503,8 +514,8 @@ const movies: MovieData[] = [
     id: 19,
     title: 'The Departed',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(19).poster,
+    backdrop_path: getImageByIndex(19).backdrop,
     overview:
       'An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.',
     belongs_to_collection: null,
@@ -528,8 +539,8 @@ const movies: MovieData[] = [
     id: 20,
     title: 'Se7en',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(20).poster,
+    backdrop_path: getImageByIndex(20).backdrop,
     overview:
       'Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.',
     belongs_to_collection: null,
@@ -552,15 +563,15 @@ const movies: MovieData[] = [
     id: 21,
     title: 'Dune',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(21).poster,
+    backdrop_path: getImageByIndex(21).backdrop,
     overview:
       'Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people.',
     belongs_to_collection: {
       id: 726871,
       name: 'Dune Collection',
-      poster_path: images[2].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(21).poster,
+      backdrop_path: getImageByIndex(21).backdrop,
     },
     genres: [
       { id: 878, name: 'Science Fiction' },
@@ -581,8 +592,8 @@ const movies: MovieData[] = [
     id: 22,
     title: 'Casablanca',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(22).poster,
+    backdrop_path: getImageByIndex(22).backdrop,
     overview:
       'A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco.',
     belongs_to_collection: null,
@@ -604,15 +615,15 @@ const movies: MovieData[] = [
     id: 23,
     title: 'Back to the Future',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(23).poster,
+    backdrop_path: getImageByIndex(23).backdrop,
     overview:
       'Marty McFly, a 17-year-old high school student, is accidentally sent thirty years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.',
     belongs_to_collection: {
       id: 264,
       name: 'Back to the Future Collection',
-      poster_path: images[2].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(23).poster,
+      backdrop_path: getImageByIndex(23).backdrop,
     },
     genres: [
       { id: 12, name: 'Adventure' },
@@ -633,8 +644,8 @@ const movies: MovieData[] = [
     id: 24,
     title: 'The Shining',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(24).poster,
+    backdrop_path: getImageByIndex(24).backdrop,
     overview:
       'A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.',
     belongs_to_collection: null,
@@ -657,15 +668,15 @@ const movies: MovieData[] = [
     id: 25,
     title: 'Blade Runner 2049',
     media_type: 'movie',
-    poster_path: images[2].poster,
-    backdrop_path: images[1].backdrop,
+    poster_path: getImageByIndex(25).poster,
+    backdrop_path: getImageByIndex(25).backdrop,
     overview:
       "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who's been missing for thirty years.",
     belongs_to_collection: {
       id: 422,
       name: 'Blade Runner Collection',
-      poster_path: images[2].poster,
-      backdrop_path: images[1].backdrop,
+      poster_path: getImageByIndex(25).poster,
+      backdrop_path: getImageByIndex(25).backdrop,
     },
     genres: [
       { id: 878, name: 'Science Fiction' },
