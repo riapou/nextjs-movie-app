@@ -1,10 +1,10 @@
-import HeroSlider from '@/components/hero-slider/HeroSlider'
 import ContentRows from '@/app/_internal/ContentRows'
+import HomeSlider from './_internal/HomeSlider.ts'
 
 export default function Home() {
   return (
     <div>
-      <HeroSlider />
+      <HomeSlider />
       <ContentRows />
     </div>
   )

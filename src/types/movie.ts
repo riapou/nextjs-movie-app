@@ -13,7 +13,7 @@ export interface MovieDetails extends MovieBase {
     poster_path: string
     backdrop_path: string
     media_type?: 'collection'
-  }
+  }|null
   genres: {
     id: number
     name: string
@@ -22,7 +22,7 @@ export interface MovieDetails extends MovieBase {
   status: string
   release_date: string
   vote_count: number
-  production_countries: { iso_3166_1: string; name: string }
+  production_countries: { iso_3166_1: string; name: string }[]
   runtime: number
   tagline: string
 }

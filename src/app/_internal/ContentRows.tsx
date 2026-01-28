@@ -71,7 +71,7 @@ const useRowData = () => {
     },
     {
       title: 'Trend Persons',
-      data: trendPersons.data?.results ?? [],
+      data: trendPersons.data?.results?? [],
       showAllLink: '/trend-persons',
       isLoading: trendPersons.isLoading,
       type: 'person',

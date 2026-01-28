@@ -13,9 +13,9 @@ import PersonCard from '../card/PersonCard'
 const MovieDetails: React.FC<{
   movie: movie
   loading: boolean
-  credits: MovieCreditsResponse
-  recommendationMovies: MovieCardData[]
-  reviews: Review[]
+  credits: MovieCreditsResponse |null
+  recommendationMovies: MovieCardData[] |null
+  reviews: Review[] |null
 }> = ({ movie, loading, credits, recommendationMovies, reviews }) => {
   const [activeTab, setActiveTab] = useState('overview')
   const [showTrailer, setShowTrailer] = useState(false)
@@ -178,8 +178,8 @@ const MovieDetails: React.FC<{
                     <span className='meta-label'>Director</span>
                     <span className='meta-value director'>
                       {
-                        credits.crew.find((member) => member.job === 'Director')
-                          ?.name
+                        credits?credits.crew.find((member) => member.job === 'Director')
+                          ?.name:<></>
                       }
                     </span>
                   </div>
@@ -242,7 +242,7 @@ const MovieDetails: React.FC<{
               <div className='cast-section'>
                 <h3 className='tab-title'>Cast</h3>
                 <div className='cast-grid'>
-                  {credits.cast.map((person) => (
+                  {credits?credits.cast.map((person) => (
                     <PersonCard
                       key={person.id}
                       id={person.id}
@@ -250,7 +250,7 @@ const MovieDetails: React.FC<{
                       profile={getImageUrl({ path: person.profile_path }) || ''}
                       media_type='person'
                     />
-                  ))}
+                  )):<></>}
                 </div>
 
                 <div className='crew-section'>
@@ -260,9 +260,9 @@ const MovieDetails: React.FC<{
                       <span className='crew-role'>Director</span>
                       <span className='crew-name'>
                         {
-                          credits.crew.find(
+                          credits?credits.crew.find(
                             (member) => member.job === 'Director'
-                          )?.name
+                          )?.name:null
                         }
                       </span>
                     </div>
@@ -270,9 +270,9 @@ const MovieDetails: React.FC<{
                       <span className='crew-role'>Producer</span>
                       <span className='crew-name'>
                         {
-                          credits.crew.find(
+                          credits?credits.crew.find(
                             (member) => member.job === 'Producer'
-                          )?.name
+                          )?.name:null
                         }
                       </span>
                     </div>
@@ -280,9 +280,9 @@ const MovieDetails: React.FC<{
                       <span className='crew-role'>Screenplay</span>
                       <span className='crew-name'>
                         {
-                          credits.crew.find(
+                          credits?credits.crew.find(
                             (member) => member.job === 'Screenplay'
-                          )?.name
+                          )?.name:null
                         }
                       </span>
                     </div>
@@ -290,9 +290,9 @@ const MovieDetails: React.FC<{
                       <span className='crew-role'>Music</span>
                       <span className='crew-name'>
                         {
-                          credits.crew.find(
+                          credits?credits.crew.find(
                             (member) => member.job === 'Music'
-                          )?.name
+                          )?.name:null
                         }
                       </span>
                     </div>
@@ -305,7 +305,7 @@ const MovieDetails: React.FC<{
               <div className='similar-movies-section'>
                 <h3 className='tab-title'>Similar Movies</h3>
                 <div className='similar-movies-grid'>
-                  {recommendationMovies.map((similarMovie) => (
+                  {recommendationMovies?recommendationMovies.map((similarMovie) => (
                     <MovieCard
                       key={similarMovie.id}
                       id={similarMovie.id}
@@ -316,7 +316,7 @@ const MovieDetails: React.FC<{
                       rating={similarMovie.vote_average}
                       media_type={similarMovie.media_type!}
                     />
-                  ))}
+                  )):null}
                 </div>
               </div>
             )}
@@ -325,7 +325,7 @@ const MovieDetails: React.FC<{
               <div className='reviews-section'>
                 <h3 className='tab-title'>Reviews</h3>
                 <div className='reviews-list'>
-                  {reviews.map((review) => (
+                  {reviews?reviews.map((review) => (
                     <div key={review.id} className='review-card'>
                       <div className='review-header'>
                         <div className='reviewer'>
@@ -349,7 +349,7 @@ const MovieDetails: React.FC<{
                       </div>
                       <p className='review-text'>{review.content}</p>
                     </div>
-                  ))}
+                  )):<></>}
                 </div>
 
                 <button className='load-more-reviews'>Load More Reviews</button>

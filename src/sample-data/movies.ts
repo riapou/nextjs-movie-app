@@ -1,3 +1,4 @@
+import { MovieDetails } from '@/types/movie'
 import images from './images'
 
 // 1. Define the shape of nested objects
@@ -50,7 +51,7 @@ const getImageByIndex = (id: number) => {
 }
 
 // 3. The Data Array
-const movies: MovieData[] = [
+const movies: MovieDetails[] = [
   {
     id: 1,
     title: 'Inception',
