@@ -1,7 +1,7 @@
 'use client'
 
-import HorizontalMovieRow from '@/components/horizontalRow/HorizontalMovieRow'
-import HorizontalPersonRow from '@/components/horizontalRow/HorizontalPersonRow'
+import HorizontalMovieRow from '@/components/horizontal-row/HorizontalMovieRow'
+import HorizontalPersonRow from '@/components/horizontal-row/HorizontalPersonRow'
 import { useUpcomingMovies, usePopularMovies } from '@/hooks/queries/movies'
 import { useTrendPerson } from '@/hooks/queries/persons'
 import { useTrendAll } from '@/hooks/queries/trend-all'
